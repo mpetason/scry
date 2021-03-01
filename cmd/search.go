@@ -90,13 +90,6 @@ func getCardData(baseAPI string) []byte {
 	return responseBytes
 }
 
-func printCardData(card Card) {
-	fmt.Println(string(card.Name))
-	fmt.Println(string(card.CardType))
-	fmt.Println(string(card.ManaCost))
-	fmt.Println(string(card.OracleText))
-}
-
 func getCardResponse(url string) {
 	responseBytes := getCardData(url)
 	card := Card{}
@@ -106,4 +99,11 @@ func getCardResponse(url string) {
 	}
 
 	printCardData(card)
+}
+
+func printCardData(card Card) {
+	fmt.Println(string(card.Name))
+	fmt.Println(string(card.CardType))
+	fmt.Println(string(card.ManaCost))
+	fmt.Println(string(card.OracleText))
 }
