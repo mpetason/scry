@@ -56,26 +56,12 @@ type Card struct {
 
 func getCard(searchTerm string, name string) {
 	url := fmt.Sprintf("https://api.scryfall.com/cards/named?%s=%s", searchTerm, name)
-	responseBytes := getCardData(url)
-	card := Card{}
-
-	if err := json.Unmarshal(responseBytes, &card); err != nil {
-		fmt.Printf("Could not unmarshal responseBytes. %v", err)
-	}
-
-	printCardData(card)
+	getCardResponse(url)
 }
 
 func getRandomCard() {
 	url := "https://api.scryfall.com/cards/random"
-	responseBytes := getCardData(url)
-	card := Card{}
-
-	if err := json.Unmarshal(responseBytes, &card); err != nil {
-		fmt.Printf("Could not unmarshal responseBytes. %v", err)
-	}
-
-	printCardData(card)
+	getCardResponse(url)
 
 }
 
@@ -109,4 +95,15 @@ func printCardData(card Card) {
 	fmt.Println(string(card.CardType))
 	fmt.Println(string(card.ManaCost))
 	fmt.Println(string(card.OracleText))
+}
+
+func getCardResponse(url string) {
+	responseBytes := getCardData(url)
+	card := Card{}
+
+	if err := json.Unmarshal(responseBytes, &card); err != nil {
+		fmt.Printf("Could not unmarshal responseBytes. %v", err)
+	}
+
+	printCardData(card)
 }
